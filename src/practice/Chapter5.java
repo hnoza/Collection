@@ -4,13 +4,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
+import practice.Task.DateComparator;
 
 public class Chapter5 {
 
-	static DateTimeFormatter fDate = DateTimeFormatter.ofPattern("yyyy年M月d日"); // 文字列→LocalDate
-	static DateTimeFormatter fStr = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // LocalDate→文字列
+	private static final DateTimeFormatter fDate = DateTimeFormatter.ofPattern("yyyy年M月d日"); // 文字列→LocalDate
+	private static final DateTimeFormatter fStr = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // LocalDate→文字列
 	
 	public static void main(String[] args) {
 		
@@ -25,22 +26,22 @@ public class Chapter5 {
 		// 日付順に並び替え
 		Collections.sort(taskList, new DateComparator());
 		for (Task task : taskList) {
-			System.out.print(task.date.format(fStr));
+			System.out.print(task.getDate().format(fStr));
 			System.out.print(":");
-			System.out.println(task.task);
+			System.out.println(task.getName());
 		}
 	}
 
-	/**
-	 * 日付の並び替え用コンパレータ
-	 *
-	 */
-	public static class DateComparator implements Comparator<Task>{
-
-		@Override
-		public int compare(Task o1, Task o2) {
-			return o1.date.compareTo(o2.date);
-		}
-		
-	}
+//	/**
+//	 * 日付の並び替え用コンパレータ
+//	 *
+//	 */
+//	private static class DateComparator implements Comparator<Task>{
+//
+//		@Override
+//		public int compare(Task o1, Task o2) {
+//			return o1.date.compareTo(o2.date);
+//		}
+//		
+//	}
 }
